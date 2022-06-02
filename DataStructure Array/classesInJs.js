@@ -1,4 +1,5 @@
 //reference type
+// reference type means non primitive type ,that is created by programmer
 const object1 = {value:10};
 const object2 = object1;
 const object3 = {value:10};
@@ -7,6 +8,7 @@ console.log(object1 === object2); //true as both are same
 console.log(object1 == object3); //false because both are different objects as objects are non primtive
 
 //context 
+// context says where we are in the objects means which a function belongs
 const obj4 = {
     a:function(){
         console.log(this);
@@ -15,6 +17,7 @@ const obj4 = {
 }
 
 //instantiation - ES6 syntax
+//means you making instanses something called instantiation ,making copy of multiple objects
 class Employee {
     constructor(name,salary,age){
         this.name = name;
