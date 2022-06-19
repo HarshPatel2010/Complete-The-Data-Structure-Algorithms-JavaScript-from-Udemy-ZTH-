@@ -3,6 +3,7 @@ class LinkedList {
     this.head = {
       value: value,
       next: null,
+      prev:null
     };
     this.tail = this.head;
     this.length = 1;
@@ -12,21 +13,27 @@ class LinkedList {
     const newNode = {
       value: value,
       next: null,
+      prev:null
     };
 
     // add newNode at the tail
+    newNode.prev = this.tail
     this.tail.next = newNode;
     this.tail = newNode;
+   
     this.length++;
     return this;
   }
   prepend(value) {
-    const newHead = {
+    const newNode = {
       value: value,
-      next: this.head,
+      next: null,
+      prev:null
     };
-    this.head = newHead;
-    this.length++;
+  newNode.next = this.head;
+  this.head.prev = newNode
+  this.head = newNode;
+  this.length++;
 
     return this;
   }
@@ -48,12 +55,16 @@ class LinkedList {
     const newNode = {
       value: value,
       next: null,
+      prev:null
     };
     // lets find the leader
     const leader = this.traverseToIndex(index - 1);
     const holdingPoint = leader.next;
     leader.next = newNode;
+    newNode.next =holdingPoint;
+    newNode.prev = leader
     newNode.next = holdingPoint;
+    holdingPoint.prev = newNode
     this.length++;
     return this.printLisnkList()
   }
@@ -68,8 +79,10 @@ class LinkedList {
   }
   remove(index){
     const leader = this.traverseToIndex(index-1);
-    const deleteIndex = leader.next;
-    leader.next = deleteIndex.next;
+    const deleteNode = leader.next;
+    const follower = deleteNode.next
+    leader.next = follower;
+    follower.prev = leader;
     this.length--
     this.printLisnkList()
     return this
@@ -82,12 +95,12 @@ linkList1.append(2);
 linkList1.append(3);
 // // linkList1.append(4);
 // // linkList1.append(5);
-// linkList1.prepend(9);
+// linkList1.prepend(2);
 // linkList1.prepend(19);
 
 // linkList1.insert(3, 87);
-linkList1.printLisnkList();
+// linkList1.printLisnkList();
 linkList1.remove(1)
-// console.log(linkList1);
+console.log(linkList1);
 
 
